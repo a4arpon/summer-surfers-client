@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-primary:hover {
+  @apply bg-primary;
+}
+.btn-success:hover {
+  @apply bg-success;
+}
+.btn-accent:hover {
+  @apply bg-accent;
+}
