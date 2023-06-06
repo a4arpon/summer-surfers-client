@@ -1,9 +1,17 @@
 import { createBrowserRouter } from 'react-router-dom'
+import Public from '../layouts/Public'
+import LandingPage from '../pages/landing/LandingPage'
 
 const Routes = createBrowserRouter([
   {
     path: '/',
-    element: <h1 className='btn btn-warning'>Hello </h1>
+    element: <Public />,
+    children: [
+      {
+        path: '/',
+        element: <LandingPage />,
+      },
+    ],
   },
 ])
 

@@ -1,12 +1,70 @@
+import { NavLink } from 'react-router-dom'
+import useAuth from '../../../hooks/useAuth'
+
 const NavbarLanding = () => {
+  const { user } = useAuth()
+  const NavList = (
+    <>
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? 'btn btn-secondary border-2 w-full'
+              : 'btn btn-secondary btn-outline border-2 w-full'
+          }
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/instructors"
+          className={({ isActive }) =>
+            isActive
+              ? 'btn btn-secondary border-2 w-full'
+              : 'btn btn-secondary btn-outline border-2 w-full'
+          }
+        >
+          Instructors
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/courses"
+          className={({ isActive }) =>
+            isActive
+              ? 'btn btn-secondary border-2 w-full'
+              : 'btn btn-secondary btn-outline border-2 w-full'
+          }
+        >
+          Summer Courses
+        </NavLink>
+      </li>
+      {user && (
+        <li>
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              isActive
+                ? 'btn btn-secondary border-2 w-full'
+                : 'btn btn-secondary btn-outline border-2 w-full'
+            }
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
+    </>
+  )
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-200">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -21,54 +79,18 @@ const NavbarLanding = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className="dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-52 gap-2 flex flex-col"
           >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+            {NavList}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <a className="btn btn-ghost normal-case text-xl lg:text-3xl">SummerSurfers</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li tabIndex={0}>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </details>
-          </li>
-          <li>
-            <a>Item 3</a>
-          </li>
-        </ul>
+        <ul className="menu-horizontal px-1 gap-2">{NavList}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <button className="btn btn-secondary">Login</button>
       </div>
     </div>
   )
