@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import Public from '../layouts/Public'
 import Login from '../pages/auth/Login'
 import Register from '../pages/auth/Register'
+import Courses from '../pages/courses/Courses'
 import LandingPage from '../pages/landing/LandingPage'
 
 const Routes = createBrowserRouter([
@@ -20,6 +21,10 @@ const Routes = createBrowserRouter([
       {
         path: '/register',
         element: <Register />,
+      },
+      {
+        path: '/courses',
+        element: <Courses />,
       },
     ],
   },

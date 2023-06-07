@@ -1,34 +1,89 @@
-import { CartPlusFill, Check2Circle } from 'react-bootstrap-icons'
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import {
+  CartPlusFill,
+  CartXFill,
+  EnvelopeAt,
+  PersonFillLock,
+  PersonPlusFill
+} from 'react-bootstrap-icons'
+import { toast } from 'react-toastify'
+import loadingBar from '../../../assets/svgs/clockLoader.svg'
+import useAuth from '../../../hooks/useAuth'
 import './Course.css'
 const Course = ({ course }) => {
-  const { title, price, enrolledStudents, url, img, instructor } = course
+  const { _id, title, price, totalSeats, img, instructor, enrolled } = course
+  const { user } = useAuth()
+  const [actionLoading, setActionLoading] = useState(false)
+  const handleAddToCart = (id) => {
+    if (user) {
+      setActionLoading(true)
+    } else {
+      toast.warning('You need to create a account first.')
+    }
+  }
   return (
-    <div className="plan">
+    <div
+      className={`plan ${
+        parseInt(totalSeats) > parseInt(enrolled)
+          ? 'bg-primary border-primary'
+          : 'bg-error border-error'
+      }`}
+    >
       <span className="pricing">
         <span>
-          $49 <small>Only</small>
+          ${price} <small>Only</small>
         </span>
       </span>
-      <p className="title">Professional</p>
-      <p className="info">
-        This plan is for those who have a team already and running a large
-        business.
+      <img src={img} alt="" className="h-60 w-full rounded-lg" />
+      <p className="title text-xl font-semibold mt-10">{title}</p>
+      <p className="info text-lg text-secondary">
+        by <strong>{instructor?.name}</strong>
+        {user && (
+          <span className="mt-2 flex items-center gap-2">
+            <EnvelopeAt /> {instructor?.email}
+          </span>
+        )}
       </p>
       <ul className="features">
         <li>
           <span className="icon">
-            <Check2Circle size={18}/>
+            <PersonPlusFill size={24} />
           </span>
           <span>
-            <strong>20</strong> team members
+            <strong>{parseInt(totalSeats) - parseInt(enrolled)}</strong> seats
+            left
+          </span>
+        </li>
+        <li>
+          <span className="icon">
+            <PersonFillLock size={24} />
+          </span>
+          <span>
+            <strong>{totalSeats}</strong> Seats at total
           </span>
         </li>
       </ul>
-      <div className="action">
-        <Link className="btn btn-primary w-full" href="#">
-          <CartPlusFill size={28} /> Choose plan
-        </Link>
+      <div className="">
+        {parseInt(totalSeats) > parseInt(enrolled) ? (
+          <button
+            className="btn btn-primary w-full"
+            to={`/courses/${_id}`}
+            disabled={actionLoading}
+            onClick={() => handleAddToCart(_id)}
+          >
+            {actionLoading ? (
+              <img src={loadingBar} className="h-10" />
+            ) : (
+              <>
+                <CartPlusFill size={28} /> Select This Course
+              </>
+            )}
+          </button>
+        ) : (
+          <button disabled className="btn btn-primary w-full">
+            <CartXFill size={28} /> Enroll Now
+          </button>
+        )}
       </div>
     </div>
   )

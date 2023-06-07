@@ -1,7 +1,9 @@
+import axios from 'axios'
 import { useState } from 'react'
 import { Google } from 'react-bootstrap-icons'
 import { useForm } from 'react-hook-form'
 import { Link, Navigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import loadingBar from '../../assets/svgs/clockLoader.svg'
 import useAuth from '../../hooks/useAuth'
 import useTitle from '../../hooks/useTitle'
@@ -12,18 +14,41 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm()
-  const { user, signInGoogle } = useAuth()
+  const { user, signInGoogle, loginUser } = useAuth()
   const [loading, setLoading] = useState(false)
   const handleFormSubmit = (data) => {
     setLoading(true)
-    console.log(data)
+    if (data) {
+      loginUser(data?.email, data?.password)
+        .then((res) => {
+          setLoading(true)
+          console.log(res)
+        })
+        .catch((err) => {
+          setLoading(false)
+          toast.error(err.message)
+        })
+    }
   }
   const handleSocialSignIn = () => {
     setLoading(true)
-    signInGoogle().then((res) => {
-      console.log(res)
-      setLoading(false)
-    })
+    signInGoogle()
+      .then((res) => {
+        const tmpUser = {
+          name: res?.user?.displayName,
+          email: res?.user?.email,
+        }
+        axios
+          .post(`${import.meta.env.VITE_SERVER_URL}/users`, tmpUser)
+          .then((res) => {
+            console.log(res)
+            setLoading(false)
+          })
+      })
+      .catch((err) => {
+        setLoading(false)
+        toast.error(err.message)
+      })
   }
   if (user) {
     return <Navigate to="/" replace />

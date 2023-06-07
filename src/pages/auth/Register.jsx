@@ -31,28 +31,32 @@ const Register = () => {
         if (regx.test(data.password)) {
           const imgData = new FormData()
           imgData.append('image', data.photo[0])
-          axios
-            .post(imgBBUrl, imgData)
-            .then((res) => res?.data)
-            .then((data) => {
-              registerUser(data.email, data.password)
-                .then((usr) => {
-                  console.log(usr.user)
-                  updateUser(data?.name, data?.display_url)
-                    .then((res) => {
-                      setLoading(false)
-                      console.log(res)
-                    })
-                    .catch((err) => {
-                      setLoading(false)
-                      console.log(err)
-                    })
-                })
-                .catch((err) => {
-                  setLoading(false)
-                  console.log(err)
-                })
-            })
+          axios.post(imgBBUrl, imgData).then((imageData) => {
+            registerUser(data?.email, data?.password)
+              .then((usr) => {
+                updateUser(data?.name, imageData?.data?.data?.display_url)
+                  .then((res) => {
+                    const tmpUser = {
+                      name: data?.name,
+                      email: data?.email,
+                    }
+                    axios
+                      .post(`${import.meta.env.VITE_SERVER_URL}/users`, tmpUser)
+                      .then((res) => {
+                        console.log(res)
+                        setLoading(false)
+                      })
+                  })
+                  .catch((err) => {
+                    setLoading(false)
+                    console.log(err)
+                  })
+              })
+              .catch((err) => {
+                setLoading(false)
+                console.log(err)
+              })
+          })
         } else {
           setLoading(false)
           toast.error(
@@ -68,8 +72,16 @@ const Register = () => {
   const handleSocialSignIn = () => {
     setLoading(true)
     signInGoogle().then((res) => {
-      console.log(res)
-      setLoading(false)
+      const tmpUser = {
+        name: res?.user?.displayName,
+        email: res?.user?.email,
+      }
+      axios
+        .post(`${import.meta.env.VITE_SERVER_URL}/users`, tmpUser)
+        .then((res) => {
+          console.log(res)
+          setLoading(false)
+        })
     })
   }
   return (

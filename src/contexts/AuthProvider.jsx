@@ -1,3 +1,4 @@
+import axios from 'axios'
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -18,6 +19,7 @@ const AuthProvider = ({ children }) => {
   // Create user with email and password
   const registerUser = (email, password) => {
     setLoading(true)
+    console.log(email, password)
     return createUserWithEmailAndPassword(fAuth, email, password)
   }
   // Login user using email and password
@@ -47,8 +49,20 @@ const AuthProvider = ({ children }) => {
   // Watch user state changes.
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(fAuth, (currentUser) => {
-      setUser(currentUser)
-      setLoading(false)
+      if (currentUser && currentUser.email) {
+        axios
+          .post(`${import.meta.env.VITE_SERVER_URL}/jwt`, {
+            email: currentUser?.email,
+          })
+          .then((res) => {
+            localStorage.setItem('access-token', res.data)
+            setUser(currentUser)
+            setLoading(false)
+          })
+      } else {
+        setUser(null)
+        setLoading(false)
+      }
     })
 
     return () => {

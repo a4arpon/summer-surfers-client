@@ -111,7 +111,7 @@ const NavbarLanding = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-52 gap-2"
+                className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-52 gap-2 z-10"
               >
                 <li>
                   <Link>
