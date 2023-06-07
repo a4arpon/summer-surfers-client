@@ -5,7 +5,8 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
-  signOut
+  signOut,
+  updateProfile
 } from 'firebase/auth'
 import { createContext, useEffect, useState } from 'react'
 import firebaseApp from '../_firebase/Firebase.conf'
@@ -28,6 +29,14 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     setLoading(true)
     return signOut(fAuth)
+  }
+  // upgrade profile and photo
+  const updateUser = (name, photo) => {
+    setLoading(true)
+    return updateProfile(fAuth.currentUser, {
+      displayName: name,
+      photoURL: photo,
+    })
   }
   // continue With Google
   const signInGoogle = () => {
@@ -54,6 +63,7 @@ const AuthProvider = ({ children }) => {
     signInGoogle,
     registerUser,
     logout,
+    updateUser,
   }
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>
 }
