@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Google } from 'react-bootstrap-icons'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import loadingBar from '../../assets/svgs/clockLoader.svg'
+import useAuth from '../../hooks/useAuth'
 import useTitle from '../../hooks/useTitle'
 const Login = () => {
   useTitle('Login')
@@ -11,10 +12,21 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm()
+  const { user, signInGoogle } = useAuth()
   const [loading, setLoading] = useState(false)
   const handleFormSubmit = (data) => {
     setLoading(true)
     console.log(data)
+  }
+  const handleSocialSignIn = () => {
+    setLoading(true)
+    signInGoogle().then((res) => {
+      console.log(res)
+      setLoading(false)
+    })
+  }
+  if (user) {
+    return <Navigate to="/" replace />
   }
   return (
     <div className="flex justify-center items-center min-h-screen px-3">
@@ -71,7 +83,7 @@ const Login = () => {
           <div>
             <button
               className="btn btn-primary w-full text-white"
-              onClick={() => setLoading(true)}
+              onClick={handleSocialSignIn}
               disabled={loading}
             >
               <Google /> Continue With Google

@@ -14,7 +14,7 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm()
-  const { registerUser, user, updateUser } = useAuth()
+  const { registerUser, user, updateUser, signInGoogle } = useAuth()
   const [loading, setLoading] = useState(false)
   // imgbb url
   const imgBBUrl = `https://api.imgbb.com/1/upload?key=${
@@ -27,28 +27,50 @@ const Register = () => {
     setLoading(true)
     if (data) {
       const regx = /^(?=.*[a-z]).{6,20}$/
-      if (regx.test(data.password)) {
-        const imgData = new FormData()
-        imgData.append('image', data.photo[0])
-        axios
-          .post(imgBBUrl, imgData)
-          .then((res) => res?.data)
-          .then((data) => {
-            registerUser(data.email, data.password).then((usr) => {
-              console.log(usr.user)
-              updateUser(data?.name, data?.display_url).then((res) => {
-                setLoading(false)
-                console.log(res)
-              })
+      if (data.password === data.confirmPassword) {
+        if (regx.test(data.password)) {
+          const imgData = new FormData()
+          imgData.append('image', data.photo[0])
+          axios
+            .post(imgBBUrl, imgData)
+            .then((res) => res?.data)
+            .then((data) => {
+              registerUser(data.email, data.password)
+                .then((usr) => {
+                  console.log(usr.user)
+                  updateUser(data?.name, data?.display_url)
+                    .then((res) => {
+                      setLoading(false)
+                      console.log(res)
+                    })
+                    .catch((err) => {
+                      setLoading(false)
+                      console.log(err)
+                    })
+                })
+                .catch((err) => {
+                  setLoading(false)
+                  console.log(err)
+                })
             })
-          })
+        } else {
+          setLoading(false)
+          toast.error(
+            'Password must contain at last one numerical digit and one alphabetical letter more than 6 characters.'
+          )
+        }
       } else {
         setLoading(false)
-        toast.error(
-          'Password must contain at last one numerical digit and one alphabetical letter more than 6 characters.'
-        )
+        toast.warning('Password should be matched.')
       }
     }
+  }
+  const handleSocialSignIn = () => {
+    setLoading(true)
+    signInGoogle().then((res) => {
+      console.log(res)
+      setLoading(false)
+    })
   }
   return (
     <div className="flex justify-center items-center min-h-screen px-3">
@@ -110,6 +132,19 @@ const Register = () => {
                 </span>
               )}
             </div>
+            <div className="mb-3">
+              <label>Retype Password</label>
+              <input
+                type="password"
+                className="w-full input input-bordered focus:outline-none mt-2 input-secondary focus:border-2"
+                {...register('confirmPassword', { required: true })}
+              />
+              {errors.password && (
+                <span className="text-red-500 mt-1 block">
+                  Confirm Password is required
+                </span>
+              )}
+            </div>
             <div>
               <button
                 type="submit"
@@ -134,7 +169,7 @@ const Register = () => {
           <div>
             <button
               className="btn btn-primary w-full text-white"
-              onClick={() => setLoading(true)}
+              onClick={handleSocialSignIn}
               disabled={loading}
             >
               <Google /> Continue With Google

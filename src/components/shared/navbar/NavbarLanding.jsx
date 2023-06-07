@@ -1,8 +1,17 @@
+import {
+  ColumnsGap,
+  House,
+  MortarboardFill,
+  People,
+  PersonCircle,
+  WrenchAdjustableCircleFill,
+  XCircleFill
+} from 'react-bootstrap-icons'
 import { Link, NavLink } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 
 const NavbarLanding = () => {
-  const { user } = useAuth()
+  const { user, logout } = useAuth()
   const NavList = (
     <>
       <li>
@@ -14,7 +23,7 @@ const NavbarLanding = () => {
               : 'btn btn-secondary btn-outline border-2 w-full'
           }
         >
-          Home
+          <House size={24} /> Home
         </NavLink>
       </li>
       <li>
@@ -26,7 +35,7 @@ const NavbarLanding = () => {
               : 'btn btn-secondary btn-outline border-2 w-full'
           }
         >
-          Instructors
+          <People size={24} /> Instructors
         </NavLink>
       </li>
       <li>
@@ -38,7 +47,7 @@ const NavbarLanding = () => {
               : 'btn btn-secondary btn-outline border-2 w-full'
           }
         >
-          Summer Courses
+          <MortarboardFill size={24} /> Summer Courses
         </NavLink>
       </li>
       {user && (
@@ -51,7 +60,7 @@ const NavbarLanding = () => {
                 : 'btn btn-secondary btn-outline border-2 w-full'
             }
           >
-            Dashboard
+            <ColumnsGap size={24} /> Dashboard
           </NavLink>
         </li>
       )}
@@ -80,7 +89,7 @@ const NavbarLanding = () => {
             </label>
             <ul
               tabIndex={0}
-              className="dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-52 gap-2 flex flex-col"
+              className="dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-60 gap-2 flex flex-col"
             >
               {NavList}
             </ul>
@@ -93,9 +102,39 @@ const NavbarLanding = () => {
           <ul className="menu-horizontal px-1 gap-2">{NavList}</ul>
         </div>
         <div className="navbar-end">
-          <Link to={'/login'} className="btn btn-secondary">
-            Login
-          </Link>
+          {user ? (
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img src={user?.photoURL} />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-52 gap-2"
+              >
+                <li>
+                  <Link>
+                    <PersonCircle size={18} /> Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link>
+                    <WrenchAdjustableCircleFill size={18} /> Settings
+                  </Link>
+                </li>
+                <li>
+                  <button onClick={() => logout()} className="hover:btn-error">
+                    <XCircleFill size={18} /> Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <Link to={'/login'} className="btn btn-secondary ">
+              Login
+            </Link>
+          )}
         </div>
       </div>
     </div>
