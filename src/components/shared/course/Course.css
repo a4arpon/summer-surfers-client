@@ -1,0 +1,79 @@
+.plan strong {
+  font-weight: 600;
+  color: #425275;
+}
+.plan {
+  align-items: center;
+  padding: 20px;
+  padding-top: 40px;
+  border-radius: 16px;
+  position: relative;
+  @apply bg-primary bg-opacity-10 hover:border-l-2 hover:border-b-2 border-primary border-dashed;
+}
+.plan .pricing {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 99em 0 0 99em;
+  display: flex;
+  align-items: center;
+  padding: 0.625em 0.75em;
+  font-size: 1.25rem;
+  font-weight: 600;
+  @apply bg-primary text-base-100
+}
+
+.plan .pricing small {
+  @apply text-base-200;
+  font-size: 0.75em;
+  margin-left: 0.25em;
+}
+
+.plan .title {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: #425675;
+}
+
+.plan .title + * {
+  margin-top: 0.75rem;
+}
+
+.plan .info + * {
+  margin-top: 1rem;
+}
+
+.plan .features {
+  display: flex;
+  flex-direction: column;
+}
+
+.plan .features li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.plan .features li + * {
+  margin-top: 0.75rem;
+}
+
+.plan .features .icon {
+  background-color: #1fcac5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.plan .features + * {
+  margin-top: 1.25rem;
+}
+
+.plan .action {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}

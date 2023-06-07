@@ -1,7 +1,18 @@
-import useTitle from '../../hooks/useTitle';
+import useTitle from '../../hooks/useTitle'
+import PopularCourses from './PopularCourses'
+import PopularInstructors from './PopularInstructors'
+import TopSlider from './TopSlider'
 const LandingPage = () => {
   useTitle('Home')
-  return <div>LandingPage</div>
+  return (
+    <div className="container mx-auto lg:py-10">
+      <TopSlider />
+      <div className="px-3 lg:px-0 py-10">
+        <PopularCourses />
+        <PopularInstructors />
+      </div>
+    </div>
+  )
 }
 
 export default LandingPage

@@ -95,7 +95,7 @@ const NavbarLanding = () => {
             </ul>
           </div>
           <a className="btn btn-ghost normal-case text-xl lg:text-3xl">
-            SummerSurfers
+            SummerSurf
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
