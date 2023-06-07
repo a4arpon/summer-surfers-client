@@ -9,14 +9,37 @@ import {
 import { toast } from 'react-toastify'
 import loadingBar from '../../../assets/svgs/clockLoader.svg'
 import useAuth from '../../../hooks/useAuth'
+import useAxiosSecure from '../../../hooks/useAxiosSecure'
+import useCourses from '../../../hooks/useCourses'
 import './Course.css'
 const Course = ({ course }) => {
   const { _id, title, price, totalSeats, img, instructor, enrolled } = course
   const { user } = useAuth()
+  const { axiosSecure } = useAxiosSecure()
   const [actionLoading, setActionLoading] = useState(false)
+  const { refetch } = useCourses()
   const handleAddToCart = (id) => {
     if (user) {
       setActionLoading(true)
+      const cartItem = {
+        course: id,
+        name: user?.displayName,
+        email: user?.email,
+        status: 'unpaid',
+      }
+      axiosSecure
+        .post('/carts', cartItem)
+        .then((res) => res.data)
+        .then((res) => {
+          if (res.error === false) {
+            setActionLoading(false)
+            toast.success(res.message)
+            refetch()
+          } else {
+            setActionLoading(false)
+            toast.error(res.message)
+          }
+        })
     } else {
       toast.warning('You need to create a account first.')
     }

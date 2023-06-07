@@ -5,6 +5,7 @@ const useCourses = () => {
   const {
     data: courses = [],
     isLoading: courseLoading,
+    refetch,
   } = useQuery({
     queryKey: ['courses'],
     queryFn: async () => {
@@ -12,7 +13,7 @@ const useCourses = () => {
       return res.data
     },
   })
-  return { courses, courseLoading}
+  return { courses, courseLoading, refetch }
 }
 
 export default useCourses
