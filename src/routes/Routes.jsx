@@ -3,6 +3,7 @@ import Public from '../layouts/Public'
 import Login from '../pages/auth/Login'
 import Register from '../pages/auth/Register'
 import Courses from '../pages/courses/Courses'
+import InstructorCourses from '../pages/instructors/InstructorCourses'
 import Instructors from '../pages/instructors/Instructors'
 import LandingPage from '../pages/landing/LandingPage'
 
@@ -30,6 +31,10 @@ const Routes = createBrowserRouter([
       {
         path: '/instructors',
         element: <Instructors />,
+      },
+      {
+        path: '/instructors/:instructorId',
+        element: <InstructorCourses />,
       },
     ],
   },

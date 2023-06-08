@@ -1,8 +1,9 @@
+import { Link } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 const Modal = ({ instructor }) => {
   const { user } = useAuth()
   if (instructor) {
-    const { name, email, totalStudents, profession } = instructor
+    const { _id, name, email, totalStudents, profession } = instructor
     const err = 'Accurate info not available now.'
     return (
       <>
@@ -26,6 +27,12 @@ const Modal = ({ instructor }) => {
               <p>
                 <strong>Total Students:</strong> {totalStudents || err}
               </p>
+              <Link
+                to={`/instructors/${_id}`}
+                className="btn btn-primary mt-5 w-full"
+              >
+                View Courses
+              </Link>
             </div>
           </form>
         </dialog>
