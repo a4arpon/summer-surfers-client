@@ -3,9 +3,10 @@ import useCourses from '../../hooks/useCourses'
 
 const PopularCourses = () => {
   const { courses, courseLoading } = useCourses()
+
   return (
     <div>
-      <h1 className="text-3xl font-semibold text-center border-b-2  pb-3 mb-5 border-primary">
+      <h1 className="text-3xl font-semibold text-center divider text-primary mb-10">
         Our Popular Courses
       </h1>
       {!courseLoading && courses ? (

@@ -37,6 +37,7 @@ const Login = () => {
         const tmpUser = {
           name: res?.user?.displayName,
           email: res?.user?.email,
+          photo: res?.user?.photoURL,
         }
         axios
           .post(`${import.meta.env.VITE_SERVER_URL}/users`, tmpUser)

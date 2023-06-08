@@ -39,6 +39,7 @@ const Register = () => {
                     const tmpUser = {
                       name: data?.name,
                       email: data?.email,
+                      photo: imageData?.data?.data?.display_url,
                     }
                     axios
                       .post(`${import.meta.env.VITE_SERVER_URL}/users`, tmpUser)
@@ -75,6 +76,7 @@ const Register = () => {
       const tmpUser = {
         name: res?.user?.displayName,
         email: res?.user?.email,
+        photo: res?.user?.photoURL,
       }
       axios
         .post(`${import.meta.env.VITE_SERVER_URL}/users`, tmpUser)

@@ -1,5 +1,4 @@
 .cardUIVerse {
-  height: 254px;
   border-radius: 20px;
   @apply bg-base-200;
   position: relative;
@@ -8,15 +7,6 @@
   transition: 0.5s ease-out;
   overflow: visible;
 }
-
-.cardUIVerse-details {
-  color: black;
-  height: 100%;
-  gap: 0.5em;
-  display: grid;
-  place-content: center;
-}
-
 .cardUIVerse-button {
   transform: translate(-50%, 125%);
   width: 60%;
@@ -31,16 +21,6 @@
   opacity: 0;
   transition: 0.3s ease-out;
   @apply bg-primary;
-}
-
-.textUIVerse-body {
-  color: rgb(134, 134, 134);
-}
-
-/*textUIVerse*/
-.textUIVerse-title {
-  font-size: 1.5em;
-  font-weight: bold;
 }
 
 /*Hover*/
