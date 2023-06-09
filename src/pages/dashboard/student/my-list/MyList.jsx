@@ -9,7 +9,7 @@ const MyList = () => {
   const { user } = useAuth()
   const { axiosSecure } = useAxiosSecure()
   const { data: cart = [], refetch } = useQuery({
-    queryKey: ['course'],
+    queryKey: ['myList'],
     queryFn: async () => {
       const res = await axiosSecure.get(`/courses/my-lists/${user?.email}`)
       return res.data
@@ -32,7 +32,7 @@ const MyList = () => {
           <BagCheckFill size={34} /> Payment Due:{' '}
           <strong>
             {cart &&
-              cart.reduce((sum, course) => {
+              cart?.reduce((sum, course) => {
                 return sum + course.price
               }, 0)}
           </strong>

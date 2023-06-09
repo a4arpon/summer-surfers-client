@@ -9,8 +9,8 @@ const useInstructor = () => {
     enabled: !loading,
     queryFn: async () => {
       const res = await axiosSecure.get(`/instructor/verify/${user?.email}`)
-      // return res.data.instructor
-      return true
+      return res.data.instructor
+      // return true
     },
   })
   return { isInstructor, isInstructorLoading }

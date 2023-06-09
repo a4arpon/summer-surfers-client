@@ -4,6 +4,7 @@ import Public from '../layouts/Public'
 import Login from '../pages/auth/Login'
 import Register from '../pages/auth/Register'
 import Courses from '../pages/courses/Courses'
+import AddClass from '../pages/dashboard/instructor/add-class/AddClass'
 import MyClass from '../pages/dashboard/student/my-classes/MyClass'
 import MyClasses from '../pages/dashboard/student/my-classes/MyClasses'
 import MyList from '../pages/dashboard/student/my-list/MyList'
@@ -13,6 +14,7 @@ import Payment from '../pages/dashboard/student/payment/Payment'
 import InstructorCourses from '../pages/instructors/InstructorCourses'
 import Instructors from '../pages/instructors/Instructors'
 import LandingPage from '../pages/landing/LandingPage'
+import InstructorRoute from './InstructorRoute'
 import PrivateRoute from './PrivateRoute'
 
 const Routes = createBrowserRouter([
@@ -77,6 +79,23 @@ const Routes = createBrowserRouter([
       {
         path: '/dashboard/my-payments',
         element: <MyPayments />,
+      },
+      // Instructors routes
+      {
+        path: '/dashboard/instructor-classes',
+        element: (
+          <InstructorRoute>
+            <InstructorCourses />
+          </InstructorRoute>
+        ),
+      },
+      {
+        path: '/dashboard/instructor-add-class',
+        element: (
+          <InstructorRoute>
+            <AddClass />
+          </InstructorRoute>
+        ),
       },
     ],
   },

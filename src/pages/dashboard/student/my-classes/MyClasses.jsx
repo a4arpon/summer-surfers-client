@@ -7,7 +7,7 @@ const MyClasses = () => {
   const { user } = useAuth()
   const { axiosSecure } = useAxiosSecure()
   const { data: courses = [], isLoading: loadingStatus } = useQuery({
-    queryKey: ['course'],
+    queryKey: ['myCourse'],
     queryFn: async () => {
       const res = await axiosSecure.get(`/courses/my-courses/${user?.email}`)
       return res.data

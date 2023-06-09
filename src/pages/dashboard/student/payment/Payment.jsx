@@ -9,10 +9,11 @@ import Checkout from './Checkout'
 const Payment = () => {
   const secret_key = import.meta.env.VITE_STRIPE_KEY
   const stripePromise = loadStripe(secret_key)
-  const { user } = useAuth()
+  const { user, loading } = useAuth()
   const { axiosSecure } = useAxiosSecure()
-  const { data: cart = [], refetch } = useQuery({
-    queryKey: ['course'],
+  const { data: cart = [] } = useQuery({
+    queryKey: ['paidCourses'],
+    enabled: !loading,
     queryFn: async () => {
       const res = await axiosSecure.get(`/courses/my-lists/${user?.email}`)
       const price = await res?.data?.reduce((sum, course) => {
