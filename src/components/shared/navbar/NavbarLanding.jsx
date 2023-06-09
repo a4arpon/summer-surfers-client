@@ -53,7 +53,7 @@ const NavbarLanding = () => {
       {user && (
         <li>
           <NavLink
-            to="/dashboard"
+            to="/dashboard/"
             className={({ isActive }) =>
               isActive
                 ? 'btn btn-secondary border-2 w-full'
@@ -89,7 +89,7 @@ const NavbarLanding = () => {
             </label>
             <ul
               tabIndex={0}
-              className="dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-60 gap-2 flex flex-col"
+              className="dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-60 gap-2 flex flex-col z-10"
             >
               {NavList}
             </ul>

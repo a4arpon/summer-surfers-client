@@ -7,7 +7,7 @@ const Sidebar = () => {
       id: 1,
       title: 'Dashboard',
       icon: <ColumnsGap size={28} />,
-      link: '/dashboard',
+      link: '/dashboard/',
     },
     {
       id: 2,

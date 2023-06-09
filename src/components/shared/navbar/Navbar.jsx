@@ -12,7 +12,7 @@ const Navbar = () => {
         >
           <List size={28} />
         </label>
-        <Link to={'/dashboard'} className="btn btn-ghost normal-case text-3xl">
+        <Link to={'/dashboard/'} className="btn btn-ghost normal-case text-3xl">
           SummerSurf
         </Link>
       </div>
@@ -25,7 +25,7 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="mt-5 p-2 shadow menu menu-sm dropdown-content bg-base-200 rounded-box w-52"
+            className="mt-5 p-2 shadow menu menu-sm dropdown-content bg-base-200 rounded-box w-52 z-10"
           >
             <li>
               <a>Settings</a>

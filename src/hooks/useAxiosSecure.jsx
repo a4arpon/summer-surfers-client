@@ -6,11 +6,9 @@ import useAuth from './useAuth'
 const useAxiosSecure = () => {
   const { logOut } = useAuth()
   const navigate = useNavigate()
-
   const axiosSecure = axios.create({
     baseURL: import.meta.env.VITE_SERVER_URL,
   })
-
   useEffect(() => {
     axiosSecure.interceptors.request.use((conf) => {
       const accessToken = localStorage.getItem('access-token')
@@ -19,7 +17,6 @@ const useAxiosSecure = () => {
       }
       return conf
     })
-
     axiosSecure.interceptors.response.use(
       (res) => res,
       async (err) => {
