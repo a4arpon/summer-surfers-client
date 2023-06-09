@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import { useEffect, useState } from 'react'
+import { Navigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import useAuth from '../../../../hooks/useAuth'
 import useAxiosSecure from '../../../../hooks/useAxiosSecure'
@@ -67,9 +68,12 @@ const Checkout = ({ cart, price }) => {
           exp_year: paymentMethod?.card?.exp_year,
         },
       }
-      axiosSecure
-        .post('payment', payment)
-        .then((res) => toast.success(res?.message))
+      axiosSecure.post('payment', payment).then((res) => {
+        toast.success(res?.data?.message)
+        if (res?.data?.message) {
+          return <Navigate to={'/my-classes'} replace />
+        }
+      })
     }
   }
   return (

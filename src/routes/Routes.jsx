@@ -7,6 +7,7 @@ import Courses from '../pages/courses/Courses'
 import MyClass from '../pages/dashboard/student/my-classes/MyClass'
 import MyClasses from '../pages/dashboard/student/my-classes/MyClasses'
 import MyList from '../pages/dashboard/student/my-list/MyList'
+import MyPayments from '../pages/dashboard/student/my-payments/MyPayments'
 import MyStatus from '../pages/dashboard/student/my-status/MyStatus'
 import Payment from '../pages/dashboard/student/payment/Payment'
 import InstructorCourses from '../pages/instructors/InstructorCourses'
@@ -72,6 +73,10 @@ const Routes = createBrowserRouter([
       {
         path: '/dashboard/payment',
         element: <Payment />,
+      },
+      {
+        path: '/dashboard/my-payments',
+        element: <MyPayments />,
       },
     ],
   },
