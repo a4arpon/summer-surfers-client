@@ -10,11 +10,11 @@ import Routes from './routes/Routes'
 const qClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <QueryClientProvider client={qClient}>
-      <AuthProvider>
+    <AuthProvider>
+      <QueryClientProvider client={qClient}>
         <RouterProvider router={Routes} />
-      </AuthProvider>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </AuthProvider>
     <ToastContainer theme="dark" />
   </React.StrictMode>
 )

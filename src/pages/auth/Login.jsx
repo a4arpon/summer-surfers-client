@@ -15,23 +15,23 @@ const Login = () => {
     formState: { errors },
   } = useForm()
   const { user, signInGoogle, loginUser } = useAuth()
-  const [loading, setLoading] = useState(false)
+  const [actionLoading, setActionLoading] = useState(false)
   const handleFormSubmit = (data) => {
-    setLoading(true)
+    setActionLoading(true)
     if (data) {
       loginUser(data?.email, data?.password)
         .then((res) => {
-          setLoading(true)
+          setActionLoading(true)
           console.log(res)
         })
         .catch((err) => {
-          setLoading(false)
+          setActionLoading(false)
           toast.error(err.message)
         })
     }
   }
   const handleSocialSignIn = () => {
-    setLoading(true)
+    setActionLoading(true)
     signInGoogle()
       .then((res) => {
         const tmpUser = {
@@ -43,11 +43,11 @@ const Login = () => {
           .post(`${import.meta.env.VITE_SERVER_URL}/users`, tmpUser)
           .then((res) => {
             console.log(res)
-            setLoading(false)
+            setActionLoading(false)
           })
       })
       .catch((err) => {
-        setLoading(false)
+        setActionLoading(false)
         toast.error(err.message)
       })
   }
@@ -93,9 +93,13 @@ const Login = () => {
               <button
                 type="submit"
                 className="btn btn-secondary w-full my-2"
-                disabled={loading}
+                disabled={actionLoading}
               >
-                {loading ? <img src={loadingBar} className="h-10" /> : 'Login'}
+                {actionLoading ? (
+                  <img src={loadingBar} className="h-10" />
+                ) : (
+                  'Login'
+                )}
               </button>
               <label>
                 Don&rsquo;t have any account?
@@ -110,7 +114,7 @@ const Login = () => {
             <button
               className="btn btn-primary w-full text-white"
               onClick={handleSocialSignIn}
-              disabled={loading}
+              disabled={actionLoading}
             >
               <Google /> Continue With Google
             </button>
