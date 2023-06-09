@@ -68,9 +68,11 @@ const Payment = () => {
           </div>
         </div>
       </div>
-      <Elements stripe={stripePromise}>
-        <Checkout price={cart?.price} cart={cart?.courses} />
-      </Elements>
+      {cart?.price !== 0 && (
+        <Elements stripe={stripePromise}>
+          <Checkout price={cart?.price} cart={cart?.courses} />
+        </Elements>
+      )}
     </div>
   )
 }
