@@ -1,11 +1,17 @@
+import { useContext } from 'react'
 import { Navigate, useLocation } from 'react-router-dom'
-import useAuth from '../hooks/useAuth'
+import Loader from '../components/others/Loader'
+import { AuthContext } from '../contexts/AuthProvider'
 
 const PrivateRoute = ({ children }) => {
-  const { user, loading } = useAuth()
+  const { user, loading } = useContext(AuthContext)
   const location = useLocation()
   if (loading) {
-    return <h1>Hello World</h1>
+    return (
+      <div className="h-screen">
+        <Loader />
+      </div>
+    )
   } else if (user) {
     return children
   } else {

@@ -15,7 +15,7 @@ export const AuthContext = createContext(null)
 const fAuth = getAuth(firebaseApp)
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   // Create user with email and password
   const registerUser = (email, password) => {
     setLoading(true)

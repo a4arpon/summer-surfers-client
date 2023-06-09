@@ -1,3 +1,4 @@
+import Loader from '../../components/others/Loader'
 import Course from '../../components/shared/course/Course'
 import useCourses from '../../hooks/useCourses'
 
@@ -15,7 +16,7 @@ const Courses = () => {
           ))}
         </div>
       ) : (
-        <h1>Hello</h1>
+        <Loader />
       )}
     </div>
   )
