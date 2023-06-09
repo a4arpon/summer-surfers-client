@@ -11,16 +11,14 @@ const MyList = () => {
   const { data: cart = [], refetch } = useQuery({
     queryKey: ['course'],
     queryFn: async () => {
-      const res = await axiosSecure.get(
-        `${import.meta.env.VITE_SERVER_URL}/courses/my-lists/${user?.email}`
-      )
+      const res = await axiosSecure.get(`/courses/my-lists/${user?.email}`)
       return res.data
     },
   })
   const handleDeleteCart = async (id) => {
     if (confirm('Are you sure?')) {
       await axiosSecure
-        .delete(`${import.meta.env.VITE_SERVER_URL}/carts/${id}`)
+        .delete(`/carts/${id}`)
         .then((res) =>
           !res?.error ? toast.success(res?.message) : toast.error(res?.message)
         )

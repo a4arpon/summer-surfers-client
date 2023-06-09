@@ -14,9 +14,7 @@ const Payment = () => {
   const { data: cart = [], refetch } = useQuery({
     queryKey: ['course'],
     queryFn: async () => {
-      const res = await axiosSecure.get(
-        `${import.meta.env.VITE_SERVER_URL}/courses/my-lists/${user?.email}`
-      )
+      const res = await axiosSecure.get(`/courses/my-lists/${user?.email}`)
       const price = await res?.data?.reduce((sum, course) => {
         return sum + course.price
       }, 0)
@@ -34,13 +32,20 @@ const Payment = () => {
               <BagCheckFill size={28} /> {cart?.courses?.length} Course
             </h2>
           </div>
-
           <ul className="list-decimal list-inside text-lg">
             {cart?.courses &&
               cart?.courses.map((item) => (
-                <li key={item._id}>{item?.title}</li>
+                <li key={item._id} className="flex justify-between border-b">
+                  {item?.title} <strong>{item?.price}$</strong>
+                </li>
               ))}
+            <li className="flex justify-between">
+              Others <strong>0$</strong>
+            </li>
           </ul>
+          <div className="my-2 pt-2 border-t-2 flex justify-between text-2xl">
+            <span>Total cost</span> <strong>{cart?.price}$</strong>
+          </div>
           <div className="alert alert-warning">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +69,7 @@ const Payment = () => {
         </div>
       </div>
       <Elements stripe={stripePromise}>
-        <Checkout />
+        <Checkout price={cart?.price} cart={cart?.courses} />
       </Elements>
     </div>
   )

@@ -9,9 +9,7 @@ const MyClasses = () => {
   const { data: courses = [], isLoading: loadingStatus } = useQuery({
     queryKey: ['course'],
     queryFn: async () => {
-      const res = await axiosSecure.get(
-        `${import.meta.env.VITE_SERVER_URL}/courses/my-courses/${user?.email}`
-      )
+      const res = await axiosSecure.get(`/courses/my-courses/${user?.email}`)
       return res.data
     },
   })
