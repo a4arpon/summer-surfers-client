@@ -10,7 +10,6 @@ const useInstructor = () => {
     queryFn: async () => {
       const res = await axiosSecure.get(`/instructor/verify/${user?.email}`)
       return res.data.instructor
-      // return true
     },
   })
   return { isInstructor, isInstructorLoading }

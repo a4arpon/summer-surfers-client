@@ -5,6 +5,7 @@ import Login from '../pages/auth/Login'
 import Register from '../pages/auth/Register'
 import Courses from '../pages/courses/Courses'
 import AddClass from '../pages/dashboard/instructor/add-class/AddClass'
+import InstructorClasses from '../pages/dashboard/instructor/instructor-classes/InstructorClasses'
 import MyClass from '../pages/dashboard/student/my-classes/MyClass'
 import MyClasses from '../pages/dashboard/student/my-classes/MyClasses'
 import MyList from '../pages/dashboard/student/my-list/MyList'
@@ -85,7 +86,7 @@ const Routes = createBrowserRouter([
         path: '/dashboard/instructor-classes',
         element: (
           <InstructorRoute>
-            <InstructorCourses />
+            <InstructorClasses />
           </InstructorRoute>
         ),
       },
