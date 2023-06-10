@@ -5,7 +5,7 @@ import Instructor from '../../components/shared/instructor/Instructor'
 import Modal from '../../components/shared/instructor/Modal'
 const Instructors = () => {
   const [instructors, setInstructors] = useState([])
-  const [showInstructor, setShowInstructor] = useState(null)
+  const [showInstructor, setShowInstructor] = useState({})
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_SERVER_URL}/instructors`)

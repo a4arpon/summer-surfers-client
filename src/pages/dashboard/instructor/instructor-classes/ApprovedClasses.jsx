@@ -12,6 +12,7 @@ const ApprovedClasses = () => {
     axiosSecure(`/instructor/courses/${user?.email}`).then((res) =>
       setMyCourses(res?.data)
     )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading])
 
   return (

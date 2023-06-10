@@ -1,15 +1,19 @@
 import {
   BagPlusFill,
   CalendarCheckFill,
+  CashCoin,
   ColumnsGap,
   JournalPlus,
-  MortarboardFill
+  MortarboardFill,
+  PeopleFill
 } from 'react-bootstrap-icons'
 import { Link, NavLink } from 'react-router-dom'
+import useAdmin from '../../../hooks/useAdmin'
 import useInstructor from '../../../hooks/useInstructor'
 
 const Sidebar = () => {
   const { isInstructor, isInstructorLoading } = useInstructor()
+  const { isAdmin, isAdminLoading } = useAdmin()
   let sidebarMenus = null
   if (isInstructor && !isInstructorLoading) {
     sidebarMenus = [
@@ -20,10 +24,31 @@ const Sidebar = () => {
         link: '/dashboard/instructor-classes',
       },
       {
-        id: 2,
+        id: 3,
         title: 'Add a Class',
         icon: <JournalPlus size={28} />,
         link: '/dashboard/instructor-add-class',
+      },
+    ]
+  } else if (isAdmin && !isAdminLoading) {
+    sidebarMenus = [
+      {
+        id: 1,
+        title: 'Manage Classes',
+        icon: <MortarboardFill size={28} />,
+        link: '/dashboard/manage-classes',
+      },
+      {
+        id: 2,
+        title: 'Manage Users',
+        icon: <PeopleFill size={28} />,
+        link: '/dashboard/manage-users',
+      },
+      {
+        id: 3,
+        title: 'Manage payments',
+        icon: <CashCoin size={28} />,
+        link: '/dashboard/manage-payments',
       },
     ]
   } else {
@@ -32,7 +57,7 @@ const Sidebar = () => {
         id: 1,
         title: 'Dashboard',
         icon: <ColumnsGap size={28} />,
-        link: '/dashboard/',
+        link: '/dashboard/my-status',
       },
       {
         id: 2,

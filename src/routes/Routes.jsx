@@ -4,9 +4,11 @@ import Public from '../layouts/Public'
 import Login from '../pages/auth/Login'
 import Register from '../pages/auth/Register'
 import Courses from '../pages/courses/Courses'
+import ManageClasses from '../pages/dashboard/admin/manage-classes/ManageClasses'
 import AddClass from '../pages/dashboard/instructor/add-class/AddClass'
 import EditClass from '../pages/dashboard/instructor/add-class/EditClass'
 import InstructorClasses from '../pages/dashboard/instructor/instructor-classes/InstructorClasses'
+import RoleRouter from '../pages/dashboard/RoleRouter'
 import MyClass from '../pages/dashboard/student/my-classes/MyClass'
 import MyClasses from '../pages/dashboard/student/my-classes/MyClasses'
 import MyList from '../pages/dashboard/student/my-list/MyList'
@@ -16,8 +18,10 @@ import Payment from '../pages/dashboard/student/payment/Payment'
 import InstructorCourses from '../pages/instructors/InstructorCourses'
 import Instructors from '../pages/instructors/Instructors'
 import LandingPage from '../pages/landing/LandingPage'
+import AdminRoute from './AdminRoute'
 import InstructorRoute from './InstructorRoute'
 import PrivateRoute from './PrivateRoute'
+import StudentRoute from './StudentRoute'
 
 const Routes = createBrowserRouter([
   {
@@ -60,29 +64,62 @@ const Routes = createBrowserRouter([
     children: [
       {
         path: '/dashboard/',
-        element: <MyStatus />,
+        element: <RoleRouter />,
+      },
+      /*-----------------------------------------
+      STUDENT ROUTES
+      -----------------------------------------*/
+      {
+        path: '/dashboard/my-status',
+        element: (
+          <StudentRoute>
+            <MyStatus />
+          </StudentRoute>
+        ),
       },
       {
         path: '/dashboard/my-classes',
-        element: <MyClasses />,
+        element: (
+          <StudentRoute>
+            <MyClasses />
+          </StudentRoute>
+        ),
       },
       {
         path: '/dashboard/my-class',
-        element: <MyClass />,
+        element: (
+          <StudentRoute>
+            <MyClass />
+          </StudentRoute>
+        ),
       },
       {
         path: '/dashboard/my-list',
-        element: <MyList />,
+        element: (
+          <StudentRoute>
+            <MyList />
+          </StudentRoute>
+        ),
       },
       {
         path: '/dashboard/payment',
-        element: <Payment />,
+        element: (
+          <StudentRoute>
+            <Payment />
+          </StudentRoute>
+        ),
       },
       {
         path: '/dashboard/my-payments',
-        element: <MyPayments />,
+        element: (
+          <StudentRoute>
+            <MyPayments />
+          </StudentRoute>
+        ),
       },
-      // Instructors routes
+      /*-----------------------------------------
+      INSTRUCTORS ROUTES
+      -----------------------------------------*/
       {
         path: '/dashboard/instructor-classes',
         element: (
@@ -105,6 +142,17 @@ const Routes = createBrowserRouter([
           <InstructorRoute>
             <EditClass />
           </InstructorRoute>
+        ),
+      },
+      /*-----------------------------------------
+      ADMIN ROUTES
+      -----------------------------------------*/
+      {
+        path: '/dashboard/manage-classes',
+        element: (
+          <AdminRoute>
+            <ManageClasses />
+          </AdminRoute>
         ),
       },
     ],

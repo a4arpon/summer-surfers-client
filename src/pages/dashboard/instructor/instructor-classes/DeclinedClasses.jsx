@@ -11,6 +11,7 @@ const DeclinedClasses = () => {
     axiosSecure(`/instructor/courses/declined/${user?.email}`).then((res) =>
       setMyCourses(res?.data)
     )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading])
   return (
     <div className="overflow-x-auto">

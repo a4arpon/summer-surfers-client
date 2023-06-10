@@ -12,6 +12,7 @@ const PendingClasses = () => {
     axiosSecure(`/instructor/courses/pending/${user?.email}`).then((res) =>
       setMyCourses(res?.data)
     )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading])
   return (
     <div className="overflow-x-auto">
