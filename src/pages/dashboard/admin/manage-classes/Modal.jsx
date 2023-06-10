@@ -1,21 +1,31 @@
 import { useState } from 'react'
 import loadingBar from '../../../../assets/svgs/clockLoader.svg'
-const Modal = ({ data }) => {
+import useAxiosSecure from '../../../../hooks/useAxiosSecure'
+const Modal = ({ courseData }) => {
   const [actionLoading, setActionLoading] = useState(false)
+  const { axiosSecure } = useAxiosSecure()
   const handleSendFeedback = (e) => {
     e.preventDefault()
     setActionLoading(true)
-    const data = e.target?.feedback?.value
-    console.log(data)
-    e.target.reset()
-    window.my_modal_edit.close()
+    const data = {
+      id: courseData?._id,
+      feedback: e.target?.feedback?.value,
+    }
+    axiosSecure.post('/admin/courses/feedback', data).then((res) => {
+      e.target.reset()
+      window.my_modal_edit.close()
+      setActionLoading(false)
+    })
   }
   return (
     <>
       <dialog id="my_modal_edit" className="modal">
         <form className="modal-box" onSubmit={handleSendFeedback}>
-          <h3 className="font-bold text-lg mb-3">{data?.title}</h3>
-          <p className="mb-2">Send Feedback</p>
+          <h3 className="font-bold text-lg mb-3">{courseData?.title}</h3>
+          <p>
+            Instructor: <strong>{courseData?.instructor?.name}</strong>
+          </p>
+          <p className="my-2">Send Feedback</p>
           <textarea
             className="textarea textarea-bordered w-full mb-2 h-28"
             placeholder="Feedback"

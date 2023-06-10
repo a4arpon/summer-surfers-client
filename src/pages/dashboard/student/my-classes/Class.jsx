@@ -4,7 +4,7 @@ const Class = ({ course }) => {
   return (
     <div className="card card-compact bg-base-200">
       <figure>
-        <img src={course?.img} className="h-60 w-full rounded-lg" />
+        <img src={course?.img} className="h-96 w-full rounded-lg" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{course?.title}</h2>

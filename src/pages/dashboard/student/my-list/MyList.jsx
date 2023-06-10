@@ -33,7 +33,7 @@ const MyList = () => {
           <strong>
             {cart &&
               cart?.reduce((sum, course) => {
-                return sum + course.price
+                return parseFloat(sum) + parseFloat(course?.price)
               }, 0)}
           </strong>
         </h1>

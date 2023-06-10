@@ -4,23 +4,49 @@ import {
   CheckCircleFill,
   XCircleFill
 } from 'react-bootstrap-icons'
+import { toast } from 'react-toastify'
 import useAxiosSecure from '../../../../hooks/useAxiosSecure'
 import Modal from './Modal'
 const Classes = () => {
   const { axiosSecure } = useAxiosSecure()
   const [courses, setCourses] = useState([])
   const [sendFeedback, setSendFeedback] = useState({})
+  const [isUpdated, setIsUpdated] = useState(false)
   useEffect(() => {
     axiosSecure
       .get('/admin/courses')
       .then((res) => res.data)
-      .then((res) => setCourses(res))
+      .then((res) => {
+        setCourses(res)
+        setIsUpdated(false)
+      })
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [isUpdated])
+  const handleApproveAction = (id) => {
+    axiosSecure
+      .patch(`/admin/courses/approve/${id}`)
+      .then((res) => res?.data)
+      .then((res) => {
+        res?.modifiedCount > 0
+          ? toast.success('Course Approved.')
+          : toast.warn('Undefined Error.')
+        setIsUpdated(true)
+      })
+  }
+  const handleDeclinedAction = (id) => {
+    axiosSecure
+      .patch(`/admin/courses/declined/${id}`)
+      .then((res) => res?.data)
+      .then((res) => {
+        res?.modifiedCount > 0
+          ? toast.error('Course Declined.')
+          : toast.warn('Undefined Error.')
+        setIsUpdated(true)
+      })
+  }
   return (
     <div className="overflow-x-auto">
       <table className="table table-zebra">
-        {/* head */}
         <thead>
           <tr>
             <th>#</th>
@@ -55,12 +81,22 @@ const Classes = () => {
                 <td>{course?.totalSeats}</td>
                 <td className="uppercase">{course?.status}</td>
                 <td className="btn-group">
-                  <button className="btn btn-success">
-                    <CheckCircleFill size={28} />
-                  </button>
-                  <button className="btn btn-error">
-                    <XCircleFill size={28} />
-                  </button>
+                  {course?.status === 'pending' && (
+                    <>
+                      <button
+                        className="btn btn-success"
+                        onClick={() => handleApproveAction(course?._id)}
+                      >
+                        <CheckCircleFill size={28} />
+                      </button>
+                      <button
+                        className="btn btn-error"
+                        onClick={() => handleDeclinedAction(course?._id)}
+                      >
+                        <XCircleFill size={28} />
+                      </button>
+                    </>
+                  )}
                   <button
                     className="btn btn-primary"
                     onClick={() => {
@@ -75,7 +111,7 @@ const Classes = () => {
             ))}
         </tbody>
       </table>
-      <Modal data={sendFeedback} />
+      <Modal courseData={sendFeedback} />
     </div>
   )
 }

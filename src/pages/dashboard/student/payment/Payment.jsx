@@ -17,7 +17,7 @@ const Payment = () => {
     queryFn: async () => {
       const res = await axiosSecure.get(`/courses/my-lists/${user?.email}`)
       const price = await res?.data?.reduce((sum, course) => {
-        return sum + course.price
+        return parseFloat(sum) + parseFloat(course?.price)
       }, 0)
 
       return { price: price, courses: res?.data }
@@ -69,7 +69,7 @@ const Payment = () => {
           </div>
         </div>
       </div>
-      {cart?.price !== 0 && (
+      {parseFloat(cart?.price) !== 0 && (
         <Elements stripe={stripePromise}>
           <Checkout price={cart?.price} cart={cart?.courses} />
         </Elements>

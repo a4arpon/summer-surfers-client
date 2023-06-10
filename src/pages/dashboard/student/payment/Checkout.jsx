@@ -15,7 +15,7 @@ const Checkout = ({ cart, price }) => {
     if (price !== 0) {
       axiosSecure
         .post('/create-payment-intent', {
-          price: parseFloat(price).toFixed(2),
+          price: parseFloat(price),
         })
         .then((res) => {
           setClientSecret(res.data?.clientSecret)

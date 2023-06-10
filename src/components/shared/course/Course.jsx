@@ -57,7 +57,7 @@ const Course = ({ course }) => {
           ${price} <small>Only</small>
         </span>
       </span>
-      <img src={img} alt="" className="h-60 w-full rounded-lg" />
+      <img src={img} alt="" className="h-96 w-full rounded-lg" />
       <p className="title text-xl font-semibold mt-10">{title}</p>
       <p className="info text-lg text-secondary">
         by <strong>{instructor?.name}</strong>

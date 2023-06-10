@@ -5,6 +5,7 @@ import Login from '../pages/auth/Login'
 import Register from '../pages/auth/Register'
 import Courses from '../pages/courses/Courses'
 import ManageClasses from '../pages/dashboard/admin/manage-classes/ManageClasses'
+import ManageUsers from '../pages/dashboard/admin/manage-users/ManageUsers'
 import AddClass from '../pages/dashboard/instructor/add-class/AddClass'
 import EditClass from '../pages/dashboard/instructor/add-class/EditClass'
 import InstructorClasses from '../pages/dashboard/instructor/instructor-classes/InstructorClasses'
@@ -152,6 +153,14 @@ const Routes = createBrowserRouter([
         element: (
           <AdminRoute>
             <ManageClasses />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: '/dashboard/manage-users',
+        element: (
+          <AdminRoute>
+            <ManageUsers />
           </AdminRoute>
         ),
       },
