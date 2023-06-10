@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { PencilSquare } from 'react-bootstrap-icons'
+import { Trash3Fill } from 'react-bootstrap-icons'
 import useAuth from '../../../../hooks/useAuth'
 import useAxiosSecure from '../../../../hooks/useAxiosSecure'
 
@@ -28,16 +28,17 @@ const DeclinedClasses = () => {
         </thead>
         <tbody>
           {myCourses &&
-            myCourses.map((item) => (
+            myCourses.map((item, index) => (
               <tr key={item._id}>
+                <td>{index + 1}</td>
                 <td>{item?.title}</td>
                 <td>{item?.enrolled}</td>
                 <td>{item?.totalSeats}</td>
                 <td>{item?.price}</td>
                 <td>{item?.feedback}</td>
                 <td>
-                  <button className="btn btn-primary">
-                    <PencilSquare size={28} />
+                  <button className="btn btn-error">
+                    <Trash3Fill size={28} />
                   </button>
                 </td>
               </tr>

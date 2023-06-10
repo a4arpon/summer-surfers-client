@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { PencilSquare } from 'react-bootstrap-icons'
+import { Link } from 'react-router-dom'
 import useAuth from '../../../../hooks/useAuth'
 import useAxiosSecure from '../../../../hooks/useAxiosSecure'
 
@@ -29,17 +30,21 @@ const ApprovedClasses = () => {
         </thead>
         <tbody>
           {myCourses &&
-            myCourses.map((item) => (
+            myCourses.map((item, index) => (
               <tr key={item._id}>
+                <td>{index + 1}</td>
                 <td>{item?.title}</td>
                 <td>{item?.enrolled}</td>
                 <td>{item?.totalSeats}</td>
                 <td>{item?.price}</td>
                 <td>{item?.feedback}</td>
                 <td>
-                  <button className="btn btn-primary">
+                  <Link
+                    className="btn btn-primary"
+                    to={`/dashboard/instructor-edit-class/${item._id}`}
+                  >
                     <PencilSquare size={28} />
-                  </button>
+                  </Link>
                 </td>
               </tr>
             ))}

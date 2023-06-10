@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { PencilSquare } from 'react-bootstrap-icons'
+import { Link } from 'react-router-dom'
 import useAuth from '../../../../hooks/useAuth'
 import useAxiosSecure from '../../../../hooks/useAxiosSecure'
 
@@ -35,9 +36,12 @@ const PendingClasses = () => {
                 <td>{item?.totalSeats}</td>
                 <td>{item?.price}</td>
                 <td>
-                  <button className="btn btn-primary">
+                  <Link
+                    className="btn btn-primary"
+                    to={`/dashboard/instructor-edit-class/${item._id}`}
+                  >
                     <PencilSquare size={28} />
-                  </button>
+                  </Link>
                 </td>
               </tr>
             ))}

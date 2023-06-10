@@ -3,7 +3,7 @@ import useAuth from '../../../hooks/useAuth'
 const Modal = ({ instructor }) => {
   const { user } = useAuth()
   if (instructor) {
-    const { _id, name, email, totalStudents, profession } = instructor
+    const { name, email, totalStudents, profession } = instructor
     const err = 'Accurate info not available now.'
     return (
       <>
@@ -28,7 +28,7 @@ const Modal = ({ instructor }) => {
                 <strong>Total Students:</strong> {totalStudents || err}
               </p>
               <Link
-                to={`/instructors/${_id}`}
+                to={`/instructors/${email}`}
                 className="btn btn-primary mt-5 w-full"
               >
                 View Courses

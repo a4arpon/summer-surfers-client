@@ -5,6 +5,7 @@ import Login from '../pages/auth/Login'
 import Register from '../pages/auth/Register'
 import Courses from '../pages/courses/Courses'
 import AddClass from '../pages/dashboard/instructor/add-class/AddClass'
+import EditClass from '../pages/dashboard/instructor/add-class/EditClass'
 import InstructorClasses from '../pages/dashboard/instructor/instructor-classes/InstructorClasses'
 import MyClass from '../pages/dashboard/student/my-classes/MyClass'
 import MyClasses from '../pages/dashboard/student/my-classes/MyClasses'
@@ -44,7 +45,7 @@ const Routes = createBrowserRouter([
         element: <Instructors />,
       },
       {
-        path: '/instructors/:instructorId',
+        path: '/instructors/:instructorEmail',
         element: <InstructorCourses />,
       },
     ],
@@ -95,6 +96,14 @@ const Routes = createBrowserRouter([
         element: (
           <InstructorRoute>
             <AddClass />
+          </InstructorRoute>
+        ),
+      },
+      {
+        path: '/dashboard/instructor-edit-class/:courseID',
+        element: (
+          <InstructorRoute>
+            <EditClass />
           </InstructorRoute>
         ),
       },

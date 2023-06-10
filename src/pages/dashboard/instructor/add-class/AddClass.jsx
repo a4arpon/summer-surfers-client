@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import loadingBar from '../../../../assets/svgs/clockLoader.svg'
 import useAuth from '../../../../hooks/useAuth'
 import useAxiosSecure from '../../../../hooks/useAxiosSecure'
 const AddClass = () => {
@@ -21,6 +22,7 @@ const AddClass = () => {
   }`
 
   const handleCourseSubmit = (data) => {
+    setActionLoading(true)
     const imgData = new FormData()
     imgData.append('image', data.img[0])
     axios
@@ -66,7 +68,7 @@ const AddClass = () => {
             {...register('title', { required: true })}
           />
           {errors.title && (
-            <span className="text-red-500 mt-1 block">Name is required.</span>
+            <span className="text-red-500 mt-1 block">Title is required.</span>
           )}
         </div>
         <div className="flex gap-3">
@@ -78,18 +80,22 @@ const AddClass = () => {
               {...register('price', { required: true })}
             />
             {errors.price && (
-              <span className="text-red-500 mt-1 block">Name is required.</span>
+              <span className="text-red-500 mt-1 block">
+                Price is required.
+              </span>
             )}
           </div>
           <div className="mb-3 w-1/3">
             <label>Course Total Seats</label>
             <input
-              type="text"
+              type="number"
               className="w-full input input-bordered focus:outline-none mt-2 input-secondary focus:border-2"
               {...register('totalSeats', { required: true })}
             />
             {errors.totalSeats && (
-              <span className="text-red-500 mt-1 block">Name is required.</span>
+              <span className="text-red-500 mt-1 block">
+                Seat number is required.
+              </span>
             )}
           </div>
           <div className="mb-3 w-1/3">
@@ -128,8 +134,16 @@ const AddClass = () => {
             />
           </div>
         </div>
-        <button type="submit" className="btn btn-primary w-full">
-          Submit Course
+        <button
+          type="submit"
+          className="btn btn-secondary w-full my-2"
+          disabled={actionLoading}
+        >
+          {actionLoading ? (
+            <img src={loadingBar} className="h-10" />
+          ) : (
+            'Submit Course'
+          )}
         </button>
       </form>
     </>

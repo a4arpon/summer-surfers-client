@@ -4,15 +4,17 @@ import { useParams } from 'react-router-dom'
 import Course from '../../components/shared/course/Course'
 
 const InstructorCourses = () => {
-  const { instructorId } = useParams()
+  const { instructorEmail } = useParams()
   const [coursesList, setCoursesList] = useState([])
   useEffect(() => {
     axios
       .get(
-        `${import.meta.env.VITE_SERVER_URL}/courses/instructor/${instructorId}`
+        `${
+          import.meta.env.VITE_SERVER_URL
+        }/courses/instructor/${instructorEmail}`
       )
       .then((res) => setCoursesList(res.data))
-  }, [instructorId])
+  }, [instructorEmail])
   return (
     <div className="container mx-auto">
       <div className="grid lg:grid-cols-3 gap-3 my-20">
