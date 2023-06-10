@@ -8,7 +8,7 @@ const DeclinedClasses = () => {
   const { axiosSecure } = useAxiosSecure()
   const [myCourses, setMyCourses] = useState([])
   useEffect(() => {
-    axiosSecure(`/courses/instructor/declined/${user?.email}`).then((res) =>
+    axiosSecure(`/instructor/courses/declined/${user?.email}`).then((res) =>
       setMyCourses(res?.data)
     )
   }, [loading])

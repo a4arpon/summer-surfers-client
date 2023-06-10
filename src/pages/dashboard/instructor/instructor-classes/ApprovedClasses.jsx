@@ -9,7 +9,7 @@ const ApprovedClasses = () => {
   const { axiosSecure } = useAxiosSecure()
   const [myCourses, setMyCourses] = useState([])
   useEffect(() => {
-    axiosSecure(`/courses/instructor/${user?.email}`).then((res) =>
+    axiosSecure(`/instructor/courses/${user?.email}`).then((res) =>
       setMyCourses(res?.data)
     )
   }, [loading])

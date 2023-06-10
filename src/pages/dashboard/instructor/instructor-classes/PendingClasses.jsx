@@ -9,7 +9,7 @@ const PendingClasses = () => {
   const { axiosSecure } = useAxiosSecure()
   const [myCourses, setMyCourses] = useState([])
   useEffect(() => {
-    axiosSecure(`/courses/instructor/pending/${user?.email}`).then((res) =>
+    axiosSecure(`/instructor/courses/pending/${user?.email}`).then((res) =>
       setMyCourses(res?.data)
     )
   }, [loading])
