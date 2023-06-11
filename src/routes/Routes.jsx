@@ -16,6 +16,7 @@ import MyList from '../pages/dashboard/student/my-list/MyList'
 import MyPayments from '../pages/dashboard/student/my-payments/MyPayments'
 import MyStatus from '../pages/dashboard/student/my-status/MyStatus'
 import Payment from '../pages/dashboard/student/payment/Payment'
+import ErrorPage from '../pages/error/ErrorPage'
 import InstructorCourses from '../pages/instructors/InstructorCourses'
 import Instructors from '../pages/instructors/Instructors'
 import LandingPage from '../pages/landing/LandingPage'
@@ -165,6 +166,10 @@ const Routes = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: '*',
+    element: <ErrorPage />,
   },
 ])
 
