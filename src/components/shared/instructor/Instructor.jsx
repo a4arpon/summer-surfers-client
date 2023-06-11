@@ -1,6 +1,10 @@
+import { useRef, useState } from 'react'
 import './instructor.css'
-const Instructor = ({ instructor, showInstructor }) => {
+import Modal from './Modal'
+const Instructor = ({ instructor }) => {
   const { name, photo } = instructor
+  const [showInstructor, setShowInstructor] = useState({})
+  const checkedModal = useRef()
   return (
     <div className="cardUIVerse">
       <div className="cardUIVerse-details">
@@ -12,14 +16,22 @@ const Instructor = ({ instructor, showInstructor }) => {
         <h1 className="text-center font-semibold text-lg">{name}</h1>
       </div>
       <button
+        htmlFor="my_modal_instructor"
         className="cardUIVerse-button"
         onClick={() => {
-          showInstructor(instructor)
-          window.my_modal_3.showModal()
+          checkedModal.current.checked = true
+          setShowInstructor(instructor)
         }}
       >
         More info
       </button>
+      <input
+        type="checkbox"
+        id="my_modal_instructor"
+        className="modal-toggle"
+        ref={checkedModal}
+      />
+      <Modal instructor={showInstructor} control={checkedModal} />
     </div>
   )
 }

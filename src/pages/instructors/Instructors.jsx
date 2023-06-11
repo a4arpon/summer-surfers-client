@@ -2,11 +2,9 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Loader from '../../components/others/Loader'
 import Instructor from '../../components/shared/instructor/Instructor'
-import Modal from '../../components/shared/instructor/Modal'
 import useTitle from '../../hooks/useTitle'
 const Instructors = () => {
   const [instructors, setInstructors] = useState([])
-  const [showInstructor, setShowInstructor] = useState({})
   useTitle('Instructors')
   useEffect(() => {
     axios
@@ -21,13 +19,8 @@ const Instructors = () => {
       {instructors ? (
         <div className="grid lg:grid-cols-4 gap-x-3 gap-y-8">
           {instructors?.map((instructor) => (
-            <Instructor
-              instructor={instructor}
-              key={instructor._id}
-              showInstructor={setShowInstructor}
-            />
+            <Instructor instructor={instructor} key={instructor._id} />
           ))}
-          <Modal instructor={showInstructor} />
         </div>
       ) : (
         <Loader />

@@ -5,14 +5,15 @@ import loadingBar from '../../../../assets/svgs/clockLoader.svg'
 import useAxiosSecure from '../../../../hooks/useAxiosSecure'
 const EditClass = () => {
   const { axiosSecure } = useAxiosSecure()
-  const [actionLoading, setActionLoading] = useState(false)
+  const [actionLoading, setActionLoading] = useState(true)
   const navigator = useNavigate()
   const { courseID } = useParams()
   const [editCourse, setEditCourse] = useState(null)
   useEffect(() => {
-    axiosSecure
-      .get(`/instructor/course/${courseID}`)
-      .then((res) => setEditCourse(res?.data))
+    axiosSecure.get(`/instructor/course/${courseID}`).then((res) => {
+      setEditCourse(res?.data)
+      setActionLoading(false)
+    })
   }, [])
   const handleCourseSubmit = (e) => {
     e.preventDefault()

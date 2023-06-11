@@ -1,18 +1,18 @@
 import { Link } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
-const Modal = ({ instructor }) => {
+const Modal = ({ instructor, control }) => {
   const { user } = useAuth()
   if (instructor) {
     const { name, email, totalStudents, profession } = instructor
     const err = 'Accurate info not available now.'
-    console.log(instructor)
     return (
       <>
-        <dialog id="my_modal_3" className="modal">
-          <form method="dialog" className="modal-box">
+        <div className="modal">
+          <div className="modal-box">
             <button
               htmlFor="my-modal-3"
               className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+              onClick={() => (control.current.checked = false)}
             >
               ✕
             </button>
@@ -35,8 +35,8 @@ const Modal = ({ instructor }) => {
                 View Courses
               </Link>
             </div>
-          </form>
-        </dialog>
+          </div>
+        </div>
       </>
     )
   }

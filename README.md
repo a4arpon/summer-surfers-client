@@ -4,7 +4,7 @@ Ride the wave of knowledge and adventure at our vibrant summer camp learning sch
 
 ## Admin Credentials
 
-### Admin Email: `sh jack-sparrow@piratemail.com`
+### Admin Email: `jack-sparrow@piratemail.com`
 
 ### Admin Password: `Sparrow@1234`
 
