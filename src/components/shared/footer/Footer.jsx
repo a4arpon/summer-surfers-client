@@ -1,3 +1,4 @@
+import { ChatHeartFill } from 'react-bootstrap-icons'
 import logoWeb from '../../../assets/imgs/imgLogo.png'
 const Footer = () => {
   return (
@@ -30,8 +31,28 @@ const Footer = () => {
           <a className="link link-hover">Cookie policy</a>
           <a className="link link-hover">Refund policy</a>
         </div>
+        <div>
+          <span className="footer-title">Contact</span>
+          <p>
+            Phone: <a className="link link-hover">+1 646 980 45 99</a>
+          </p>
+          <p>
+            Email: <a className="link link-hover">mail@summersurfer.com</a>
+          </p>
+          <div className="ring p-2 rounded-lg ring-gray-300">
+            <p className="text-lg font-semibold text-gray-500">
+              Subscribe to our newsletter.
+            </p>
+            <div className="input-group">
+              <input type="email" className="input focus:outline-none" />
+              <button className="btn btn-primary">
+                <ChatHeartFill size={28} />
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className="text-center bg-base-300 py-2">
+      <div className="text-center bg-base-300 py-2 font-semibold">
         &copy; SummerSurfers 2023
       </div>
     </footer>

@@ -57,7 +57,7 @@ const TopSlider = () => {
             className="bg-no-repeat bg-cover bg-center lg:rounded-lg"
           >
             <div className="w-full h-96 lg:rounded-lg bg-black bg-opacity-30 flex flex-col lg:flex-row p-5 text-white">
-              <div className="w-full text-3xl lg:text-5xl flex items-center bg-black bg-opacity-30 rounded-full rounded-bl-none p-5 text-center">
+              <div className="w-full text-3xl lg:text-5xl flex items-center bg-black bg-opacity-30 rounded-3xl rounded-bl-none p-5 text-center">
                 <h1 style={{ fontFamily: 'Satisfy, cursive' }}>{item.title}</h1>
               </div>
               <div className="w-full"></div>
