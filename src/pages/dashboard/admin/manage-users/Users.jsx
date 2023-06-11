@@ -5,6 +5,7 @@ import {
   PersonFillLock
 } from 'react-bootstrap-icons'
 import { toast } from 'react-toastify'
+import Loader from '../../../../components/others/Loader'
 import useAxiosSecure from '../../../../hooks/useAxiosSecure'
 
 const Users = () => {
@@ -60,68 +61,72 @@ const Users = () => {
         })
     }
   }
-  return (
-    <div className="overflow-x-auto">
-      <table className="table table-zebra">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th></th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users &&
-            users?.map((user, index) => (
-              <tr key={user._id}>
-                <td>{index + 1}</td>
-                <td>
-                  <div className="avatar w-16 h-16">
-                    <img src={user?.photo} className="rounded-lg" />
-                  </div>
-                </td>
-                <td>{user?.name}</td>
-                <td>{user?.email}</td>
-                <td className="uppercase">
-                  {user?.role === 'admin' || user?.role === 'instructor'
-                    ? user?.role
-                    : 'user'}
-                </td>
-                <td className="btn-group">
-                  <button
-                    disabled={!user?.role || user?.role === 'user'}
-                    className="btn btn-primary"
-                    onClick={() => handleDowngrade(user?._id)}
-                  >
-                    <PersonCircle size={28} />
-                    Make User
-                  </button>
-                  <button
-                    disabled={user?.role === 'instructor'}
-                    className="btn btn-warning"
-                    onClick={() => handleMakeInstructor(user?._id)}
-                  >
-                    <MortarboardFill size={28} />
-                    Make Instructor
-                  </button>
-                  <button
-                    disabled={user?.role === 'admin'}
-                    className="btn btn-error"
-                    onClick={() => handleMakeAdmin(user?._id)}
-                  >
-                    <PersonFillLock size={28} />
-                    Make Admin
-                  </button>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-    </div>
-  )
+  if (users.length > 0) {
+    return (
+      <div className="overflow-x-auto">
+        <table className="table table-zebra">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th></th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users &&
+              users?.map((user, index) => (
+                <tr key={user._id}>
+                  <td>{index + 1}</td>
+                  <td>
+                    <div className="avatar w-16 h-16">
+                      <img src={user?.photo} className="rounded-lg" />
+                    </div>
+                  </td>
+                  <td>{user?.name}</td>
+                  <td>{user?.email}</td>
+                  <td className="uppercase">
+                    {user?.role === 'admin' || user?.role === 'instructor'
+                      ? user?.role
+                      : 'user'}
+                  </td>
+                  <td className="btn-group">
+                    <button
+                      disabled={!user?.role || user?.role === 'user'}
+                      className="btn btn-primary"
+                      onClick={() => handleDowngrade(user?._id)}
+                    >
+                      <PersonCircle size={28} />
+                      Make User
+                    </button>
+                    <button
+                      disabled={user?.role === 'instructor'}
+                      className="btn btn-warning"
+                      onClick={() => handleMakeInstructor(user?._id)}
+                    >
+                      <MortarboardFill size={28} />
+                      Make Instructor
+                    </button>
+                    <button
+                      disabled={user?.role === 'admin'}
+                      className="btn btn-error"
+                      onClick={() => handleMakeAdmin(user?._id)}
+                    >
+                      <PersonFillLock size={28} />
+                      Make Admin
+                    </button>
+                  </td>
+                </tr>
+              ))}
+          </tbody>
+        </table>
+      </div>
+    )
+  } else {
+    return <Loader />
+  }
 }
 
 export default Users

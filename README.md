@@ -2,7 +2,9 @@
 
 Ride the wave of knowledge and adventure at our vibrant summer camp learning school.
 
-## Admin Credentials
+# Live Site
+
+## The website can be accessed at [SummerSurfers](https://omnibox-farint.web.app/)
 
 ## Features
 
@@ -14,10 +16,6 @@ Ride the wave of knowledge and adventure at our vibrant summer camp learning sch
 
 ## Tech Stack
 
-#### **Client:** React.js, HTML, CSS, JavaScript, Framer Motion, React Query (Tanstack), Axios (used for API calls), React Hook Form.
+**Client:** React.js, HTML, CSS, JavaScript, Framer Motion, React Query (Tanstack), Axios (used for API calls), React Hook Form.
 
-#### **Server:** Node.js, Express.js, MongoDB (database), JSON Web Token (JWT).
-
-# Live Site
-
-The website can be accessed at [SummerSurfers](https://omnibox-farint.web.app/)
+**Server:** Node.js, Express.js, MongoDB (database), JSON Web Token (JWT).
