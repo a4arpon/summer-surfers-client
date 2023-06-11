@@ -11,10 +11,9 @@ const EditClass = () => {
   const [editCourse, setEditCourse] = useState(null)
   useEffect(() => {
     axiosSecure
-      .get(`/instructor/courses/${courseID}`)
+      .get(`/instructor/course/${courseID}`)
       .then((res) => setEditCourse(res?.data))
-  }, [courseID])
-
+  }, [])
   const handleCourseSubmit = (e) => {
     e.preventDefault()
     setActionLoading(true)

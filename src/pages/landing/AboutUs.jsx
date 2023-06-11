@@ -61,11 +61,11 @@ const AboutUs = () => {
     },
   ]
   return (
-    <div className="border-2 p-3 rounded-lg">
+    <div className="border-2 p-3 rounded-lg my-20">
       <h2 className="mb-10 text-3xl border-b-2 pb-2 text-center">
         Our Greatest Student Of All Time
       </h2>
-      <div className="grid lg:grid-cols-4 gap-3">
+      <div className="grid lg:grid-cols-4 gap-x-3 gap-y-5">
         {who_us?.map((student) => (
           <Bounce key={student.id}>
             <WhoWeAre about={student} />

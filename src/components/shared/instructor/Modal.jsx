@@ -5,6 +5,7 @@ const Modal = ({ instructor }) => {
   if (instructor) {
     const { name, email, totalStudents, profession } = instructor
     const err = 'Accurate info not available now.'
+    console.log(instructor)
     return (
       <>
         <dialog id="my_modal_3" className="modal">
