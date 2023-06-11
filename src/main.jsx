@@ -15,6 +15,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <RouterProvider router={Routes} />
       </QueryClientProvider>
     </AuthProvider>
-    <ToastContainer theme="dark" />
+    <ToastContainer theme="dark" position="bottom-right" />
   </React.StrictMode>
 )

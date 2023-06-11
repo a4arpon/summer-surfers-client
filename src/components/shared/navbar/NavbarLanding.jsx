@@ -8,8 +8,8 @@ import {
   XCircleFill
 } from 'react-bootstrap-icons'
 import { Link, NavLink } from 'react-router-dom'
+import siteLogo from '../../../assets/imgs/imgLogo.png'
 import useAuth from '../../../hooks/useAuth'
-
 const NavbarLanding = () => {
   const { user, logout } = useAuth()
   const NavList = (
@@ -94,9 +94,15 @@ const NavbarLanding = () => {
               {NavList}
             </ul>
           </div>
-          <a className="btn btn-ghost normal-case text-xl lg:text-3xl">
-            SummerSurf
-          </a>
+          <div className="flex gap-2 justify-center items-center">
+            <img src={siteLogo} alt="" className="h-16" />
+            <h1
+              className="text-3xl font-semibold hidden lg:inline-block"
+              style={{ fontFamily: 'Satisfy, cursive' }}
+            >
+              SummerSurfers
+            </h1>
+          </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu-horizontal px-1 gap-2">{NavList}</ul>

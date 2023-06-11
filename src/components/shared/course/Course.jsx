@@ -8,9 +8,11 @@ import {
 } from 'react-bootstrap-icons'
 import { toast } from 'react-toastify'
 import loadingBar from '../../../assets/svgs/clockLoader.svg'
+import useAdmin from '../../../hooks/useAdmin'
 import useAuth from '../../../hooks/useAuth'
 import useAxiosSecure from '../../../hooks/useAxiosSecure'
 import useCourses from '../../../hooks/useCourses'
+import useInstructor from '../../../hooks/useInstructor'
 import './Course.css'
 const Course = ({ course }) => {
   const { _id, title, price, totalSeats, img, instructor, enrolled } = course
@@ -18,6 +20,8 @@ const Course = ({ course }) => {
   const { axiosSecure } = useAxiosSecure()
   const [actionLoading, setActionLoading] = useState(false)
   const { refetch } = useCourses()
+  const { isInstructor } = useInstructor()
+  const { isAdmin } = useAdmin()
   const handleAddToCart = (id) => {
     if (user) {
       setActionLoading(true)
@@ -91,7 +95,7 @@ const Course = ({ course }) => {
           <button
             className="btn btn-primary w-full"
             to={`/courses/${_id}`}
-            disabled={actionLoading}
+            disabled={actionLoading || isAdmin || isInstructor}
             onClick={() => handleAddToCart(_id)}
           >
             {actionLoading ? (
@@ -104,7 +108,7 @@ const Course = ({ course }) => {
           </button>
         ) : (
           <button disabled className="btn btn-primary w-full">
-            <CartXFill size={28} /> Enroll Now
+            <CartXFill size={28} /> Select This Course
           </button>
         )}
       </div>

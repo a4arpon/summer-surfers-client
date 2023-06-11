@@ -12,7 +12,11 @@ const Navbar = () => {
         >
           <List size={28} />
         </label>
-        <Link to={'/dashboard/'} className="btn btn-ghost normal-case text-3xl">
+        <Link
+          to={'/dashboard/'}
+          className="btn btn-ghost normal-case text-3xl"
+          style={{ fontFamily: 'Satisfy, cursive' }}
+        >
           SummerSurf
         </Link>
       </div>

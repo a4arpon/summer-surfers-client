@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react'
 import Loader from '../../components/others/Loader'
 import Instructor from '../../components/shared/instructor/Instructor'
 import Modal from '../../components/shared/instructor/Modal'
+import useTitle from '../../hooks/useTitle'
 const Instructors = () => {
   const [instructors, setInstructors] = useState([])
   const [showInstructor, setShowInstructor] = useState({})
+  useTitle('Instructors')
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_SERVER_URL}/instructors`)

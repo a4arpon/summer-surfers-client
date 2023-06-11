@@ -26,7 +26,8 @@ const Register = () => {
   const handleFormSubmit = (data) => {
     setLoading(true)
     if (data) {
-      const regx = /^(?=.*[a-z]).{6,20}$/
+      const regx =
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{6,30}$/
       if (data.password === data.confirmPassword) {
         if (regx.test(data.password)) {
           const imgData = new FormData()
@@ -61,7 +62,7 @@ const Register = () => {
         } else {
           setLoading(false)
           toast.error(
-            'Password must contain at last one numerical digit and one alphabetical letter more than 6 characters.'
+            'Password must contain at last one numerical digit and one alphabetical letter(capital and small both) more than 6 characters with a special characters.'
           )
         }
       } else {
