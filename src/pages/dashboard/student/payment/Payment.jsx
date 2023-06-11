@@ -11,7 +11,7 @@ const Payment = () => {
   const stripePromise = loadStripe(secret_key)
   const { user, loading } = useAuth()
   const { axiosSecure } = useAxiosSecure()
-  const { data: cart = [] } = useQuery({
+  const { data: cart = [], refetch } = useQuery({
     queryKey: ['paidCourses'],
     enabled: !loading,
     queryFn: async () => {
@@ -45,7 +45,7 @@ const Payment = () => {
             </li>
           </ul>
           <div className="my-2 pt-2 border-t-2 flex justify-between text-2xl">
-            <span>Total cost</span> <strong>{cart?.price}$</strong>
+            <span>Total cost</span> <strong>{cart?.price?.toFixed(2)}$</strong>
           </div>
           <div className="alert alert-warning">
             <svg
@@ -71,7 +71,11 @@ const Payment = () => {
       </div>
       {parseFloat(cart?.price) !== 0 && (
         <Elements stripe={stripePromise}>
-          <Checkout price={cart?.price} cart={cart?.courses} />
+          <Checkout
+            price={cart?.price}
+            cart={cart?.courses}
+            refetch={refetch}
+          />
         </Elements>
       )}
     </div>

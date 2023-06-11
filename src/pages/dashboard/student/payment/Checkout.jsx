@@ -1,16 +1,17 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js'
 import { useEffect, useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import useAuth from '../../../../hooks/useAuth'
 import useAxiosSecure from '../../../../hooks/useAxiosSecure'
 
-const Checkout = ({ cart, price }) => {
+const Checkout = ({ cart, price, refetch }) => {
   const { user } = useAuth()
   const stripe = useStripe()
   const elements = useElements()
   const { axiosSecure } = useAxiosSecure()
   const [clientSecret, setClientSecret] = useState('')
+  const navigator = useNavigate()
   useEffect(() => {
     if (price !== 0) {
       axiosSecure
@@ -37,8 +38,6 @@ const Checkout = ({ cart, price }) => {
     })
     if (error) {
       console.log('error', error)
-    } else {
-      console.log('Payment method', paymentMethod)
     }
     const { paymentIntent, error: confirmError } =
       await stripe.confirmCardPayment(clientSecret, {
@@ -58,7 +57,7 @@ const Checkout = ({ cart, price }) => {
         user: user?.displayName,
         email: user?.email,
         trxID: paymentIntent?.id,
-        paid: price,
+        paid: parseFloat(price?.toFixed(2)),
         items: cart?.map((item) => item?._id),
         status: 'paid',
         billing: {
@@ -71,7 +70,8 @@ const Checkout = ({ cart, price }) => {
       axiosSecure.post('payment', payment).then((res) => {
         toast.success(res?.data?.message)
         if (res?.data?.message) {
-          return <Navigate to={'/my-classes'} replace />
+          refetch()
+          navigator('/dashboard/my-classes')
         }
       })
     }

@@ -32,9 +32,11 @@ const MyList = () => {
           <BagCheckFill size={34} /> Payment Due:{' '}
           <strong>
             {cart &&
-              cart?.reduce((sum, course) => {
-                return parseFloat(sum) + parseFloat(course?.price)
-              }, 0)}
+              cart
+                ?.reduce((sum, course) => {
+                  return parseFloat(sum) + parseFloat(course?.price)
+                }, 0)
+                .toFixed(2)}
           </strong>
         </h1>
         <Link className="btn btn-accent" to={'/dashboard/payment'}>

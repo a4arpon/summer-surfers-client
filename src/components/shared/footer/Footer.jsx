@@ -1,4 +1,4 @@
-import { ChatHeartFill } from 'react-bootstrap-icons'
+import { EnvelopeAtFill } from 'react-bootstrap-icons'
 import logoWeb from '../../../assets/imgs/imgLogo.png'
 const Footer = () => {
   return (
@@ -45,7 +45,7 @@ const Footer = () => {
           <div className="input-group">
             <input type="email" className="input focus:outline-none" />
             <button className="btn btn-primary">
-              <ChatHeartFill size={28} />
+              <EnvelopeAtFill size={28} />
             </button>
           </div>
         </div>

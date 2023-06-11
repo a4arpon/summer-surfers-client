@@ -30,7 +30,7 @@ const AddClass = () => {
       .then((imageData) => {
         const courseData = {
           title: data?.title,
-          price: parseFloat(data?.price).toFixed(2),
+          price: parseFloat(parseFloat(data?.price).toFixed(2)),
           enrolled: 0,
           totalSeats: parseInt(data?.totalSeats),
           instructor: {
