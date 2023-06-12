@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
-import { Google } from 'react-bootstrap-icons'
+import { EyeFill, EyeSlashFill, Google } from 'react-bootstrap-icons'
 import { useForm } from 'react-hook-form'
 import { Link, Navigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -16,6 +16,7 @@ const Login = () => {
   } = useForm()
   const { user, signInGoogle, loginUser } = useAuth()
   const [actionLoading, setActionLoading] = useState(false)
+  const [passwordField, setPasswordField] = useState('password')
   const handleFormSubmit = (data) => {
     setActionLoading(true)
     if (data) {
@@ -78,11 +79,21 @@ const Login = () => {
 
             <div className="mb-3">
               <label>Your Password</label>
-              <input
-                type="password"
-                className="w-full input input-bordered focus:outline-none mt-2 input-secondary focus:border-2"
-                {...register('password', { required: true })}
-              />
+              <div className="input-group mt-2 items-center gap-2">
+                <input
+                  type={passwordField}
+                  className="w-full input input-bordered focus:outline-none input-secondary focus:border-2"
+                  {...register('password', { required: true })}
+                />
+                {passwordField === 'password' ? (
+                  <EyeFill size={28} onClick={() => setPasswordField('text')} />
+                ) : (
+                  <EyeSlashFill
+                    size={28}
+                    onClick={() => setPasswordField('password')}
+                  />
+                )}
+              </div>
               {errors.password && (
                 <span className="text-red-500 mt-1 block">
                   Password is required
