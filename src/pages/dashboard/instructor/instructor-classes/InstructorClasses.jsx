@@ -1,8 +1,10 @@
+import useTitle from '../../../../hooks/useTitle'
 import ApprovedClasses from './ApprovedClasses'
 import DeclinedClasses from './DeclinedClasses'
 import PendingClasses from './PendingClasses'
 
 const InstructorClasses = () => {
+  useTitle('My Classes')
   return (
     <>
       <h1 className="text-3xl text-center border-b-2 pb-2 mb-10">My Courses</h1>

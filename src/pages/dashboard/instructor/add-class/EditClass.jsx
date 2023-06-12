@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import loadingBar from '../../../../assets/svgs/clockLoader.svg'
 import useAxiosSecure from '../../../../hooks/useAxiosSecure'
+import useTitle from '../../../../hooks/useTitle'
 const EditClass = () => {
   const { axiosSecure } = useAxiosSecure()
   const [actionLoading, setActionLoading] = useState(true)
@@ -31,6 +32,7 @@ const EditClass = () => {
       setActionLoading(false)
     })
   }
+  useTitle('Edit Course')
   return (
     <>
       <h1 className="text-3xl border-b-2 text-center pb-2 mb-10">

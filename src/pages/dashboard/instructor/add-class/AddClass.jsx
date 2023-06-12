@@ -6,6 +6,7 @@ import { toast } from 'react-toastify'
 import loadingBar from '../../../../assets/svgs/clockLoader.svg'
 import useAuth from '../../../../hooks/useAuth'
 import useAxiosSecure from '../../../../hooks/useAxiosSecure'
+import useTitle from '../../../../hooks/useTitle'
 const AddClass = () => {
   const {
     register,
@@ -50,7 +51,7 @@ const AddClass = () => {
         console.log(err)
       })
   }
-
+  useTitle('Add Course')
   return (
     <>
       <h1 className="text-3xl border-b-2 text-center pb-2 mb-10">

@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query'
 import { BagCheckFill } from 'react-bootstrap-icons'
 import useAuth from '../../../../hooks/useAuth'
 import useAxiosSecure from '../../../../hooks/useAxiosSecure'
+import useTitle from '../../../../hooks/useTitle'
 import Checkout from './Checkout'
 
 const Payment = () => {
@@ -23,6 +24,7 @@ const Payment = () => {
       return { price: price, courses: res?.data }
     },
   })
+  useTitle('Secure Payment For Courses')
   return (
     <div className="flex gap-2">
       <div className="card bg-accent lg:w-1/2 text-primary-content card-compact ">

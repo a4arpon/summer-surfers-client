@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import Loader from '../../../../components/others/Loader'
 import useAuth from '../../../../hooks/useAuth'
 import useAxiosSecure from '../../../../hooks/useAxiosSecure'
+import useTitle from '../../../../hooks/useTitle'
 
 const MyPayments = () => {
   const { user } = useAuth()
@@ -21,6 +22,7 @@ const MyPayments = () => {
     minute: 'numeric',
     hour12: true,
   }
+  useTitle('My Payment History')
   return (
     <div>
       <div className="my-5 border-b-2 pb-3 flex justify-between">

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import useAuth from '../../../../hooks/useAuth'
 import useAxiosSecure from '../../../../hooks/useAxiosSecure'
+import useTitle from '../../../../hooks/useTitle'
 import Class from './Class'
 
 const MyClasses = () => {
@@ -13,6 +14,7 @@ const MyClasses = () => {
       return res.data
     },
   })
+  useTitle('My Classes')
   return (
     <div className="grid lg:grid-cols-3 gap-3">
       {!loadingStatus &&

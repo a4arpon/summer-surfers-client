@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import useAuth from '../../../../hooks/useAuth'
 import useAxiosSecure from '../../../../hooks/useAxiosSecure'
+import useTitle from '../../../../hooks/useTitle'
 
 const MyList = () => {
   const { user } = useAuth()
@@ -25,6 +26,7 @@ const MyList = () => {
       refetch()
     }
   }
+  useTitle('My Wishlists')
   return (
     <div>
       <div className="flex justify-between mb-10">
