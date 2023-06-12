@@ -1,3 +1,5 @@
+![Logo](./public/imgLogo.png)
+
 # Summer Surfers
 
 Ride the wave of knowledge and adventure at our vibrant summer camp learning school.
