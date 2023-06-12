@@ -30,6 +30,7 @@ const AuthProvider = ({ children }) => {
   // user logout
   const logout = () => {
     setLoading(true)
+    localStorage.removeItem('access-token')
     return signOut(fAuth)
   }
   // upgrade profile and photo
