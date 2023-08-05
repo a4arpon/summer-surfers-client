@@ -26,6 +26,7 @@ const AddClass = () => {
     setActionLoading(true)
     const imgData = new FormData()
     imgData.append('image', data.img[0])
+   console.log(imgData)
     axios
       .post(imgBBUrl, imgData)
       .then((imageData) => {

@@ -1,4 +1,3 @@
-import { EnvelopeAtFill } from 'react-bootstrap-icons'
 import logoWeb from '../../../assets/imgs/imgLogo.png'
 const Footer = () => {
   return (
@@ -39,15 +38,6 @@ const Footer = () => {
           <p>
             Email: <a className="link link-hover">mail@summersurfer.com</a>
           </p>
-          <p className="text-lg font-semibold text-gray-500">
-            Subscribe to our newsletter.
-          </p>
-          <div className="input-group">
-            <input type="email" className="input focus:outline-none" />
-            <button className="btn btn-primary">
-              <EnvelopeAtFill size={28} />
-            </button>
-          </div>
         </div>
       </div>
       <div className="text-center bg-base-300 py-2 font-semibold">

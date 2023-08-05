@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import Dashboard from '../layouts/Dashboard'
 import Public from '../layouts/Public'
+import AboutUs from '../pages/about-us/AboutUs'
 import Login from '../pages/auth/Login'
 import Register from '../pages/auth/Register'
 import Courses from '../pages/courses/Courses'
@@ -20,6 +21,7 @@ import ErrorPage from '../pages/error/ErrorPage'
 import InstructorCourses from '../pages/instructors/InstructorCourses'
 import Instructors from '../pages/instructors/Instructors'
 import LandingPage from '../pages/landing/LandingPage'
+import PrivacyPolicy from '../pages/privacy-policy/PrivacyPolicy'
 import AdminRoute from './AdminRoute'
 import InstructorRoute from './InstructorRoute'
 import PrivateRoute from './PrivateRoute'
@@ -49,6 +51,14 @@ const Routes = createBrowserRouter([
       {
         path: '/instructors',
         element: <Instructors />,
+      },
+      {
+        path: '/privacy-policy',
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: '/about-us',
+        element: <AboutUs />,
       },
       {
         path: '/instructors/:instructorEmail',

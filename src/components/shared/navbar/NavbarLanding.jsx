@@ -1,6 +1,7 @@
 import {
   ColumnsGap,
   House,
+  LayoutTextSidebarReverse,
   MortarboardFill,
   People,
   PersonCircle,
@@ -19,8 +20,8 @@ const NavbarLanding = () => {
           to="/"
           className={({ isActive }) =>
             isActive
-              ? 'btn btn-secondary border-2 w-full'
-              : 'btn btn-secondary btn-outline border-2 w-full'
+              ? 'btn btn-secondary btn-sm border-2 w-full'
+              : 'btn btn-secondary btn-sm btn-outline border-2 w-full'
           }
         >
           <House size={24} /> Home
@@ -31,8 +32,8 @@ const NavbarLanding = () => {
           to="/instructors"
           className={({ isActive }) =>
             isActive
-              ? 'btn btn-secondary border-2 w-full'
-              : 'btn btn-secondary btn-outline border-2 w-full'
+              ? 'btn btn-secondary btn-sm border-2 w-full'
+              : 'btn btn-secondary btn-sm btn-outline border-2 w-full'
           }
         >
           <People size={24} /> Instructors
@@ -43,11 +44,35 @@ const NavbarLanding = () => {
           to="/courses"
           className={({ isActive }) =>
             isActive
-              ? 'btn btn-secondary border-2 w-full'
-              : 'btn btn-secondary btn-outline border-2 w-full'
+              ? 'btn btn-secondary btn-sm border-2 w-full'
+              : 'btn btn-secondary btn-sm btn-outline border-2 w-full'
           }
         >
-          <MortarboardFill size={24} /> Summer Courses
+          <MortarboardFill size={24} /> Courses
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/privacy-policy"
+          className={({ isActive }) =>
+            isActive
+              ? 'btn btn-secondary btn-sm border-2 w-full'
+              : 'btn btn-secondary btn-sm btn-outline border-2 w-full'
+          }
+        >
+          <LayoutTextSidebarReverse size={24} /> Policy
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/about-us"
+          className={({ isActive }) =>
+            isActive
+              ? 'btn btn-secondary btn-sm border-2 w-full'
+              : 'btn btn-secondary btn-sm btn-outline border-2 w-full'
+          }
+        >
+          <LayoutTextSidebarReverse size={24} /> About Us.
         </NavLink>
       </li>
       {user && (
@@ -56,8 +81,8 @@ const NavbarLanding = () => {
             to="/dashboard/"
             className={({ isActive }) =>
               isActive
-                ? 'btn btn-secondary border-2 w-full'
-                : 'btn btn-secondary btn-outline border-2 w-full'
+                ? 'btn btn-secondary btn-sm border-2 w-full'
+                : 'btn btn-secondary btn-sm btn-outline border-2 w-full'
             }
           >
             <ColumnsGap size={24} /> Dashboard

@@ -1,7 +1,9 @@
 import useTitle from '../../hooks/useTitle'
 import AboutUs from './AboutUs'
+import BeAInstructor from './BeAInstructor'
 import PopularCourses from './PopularCourses'
 import PopularInstructors from './PopularInstructors'
+import Subscribe from './Subscribe'
 import TopSlider from './TopSlider'
 const LandingPage = () => {
   useTitle('Home')
@@ -12,6 +14,8 @@ const LandingPage = () => {
         <PopularCourses />
         <PopularInstructors />
         <AboutUs />
+        <Subscribe />
+        <BeAInstructor />
       </div>
     </div>
   )

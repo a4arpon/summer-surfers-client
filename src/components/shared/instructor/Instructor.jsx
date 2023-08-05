@@ -11,7 +11,7 @@ const Instructor = ({ instructor }) => {
         <img
           src={photo}
           alt=""
-          className="h-[360px] w-full mask mask-squircle"
+          className="h-[360px] object-cover w-full mask mask-squircle"
         />
         <h1 className="text-center font-semibold text-lg">{name}</h1>
       </div>

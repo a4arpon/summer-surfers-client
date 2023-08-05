@@ -1,4 +1,3 @@
-import { Bounce } from 'react-awesome-reveal'
 import WhoWeAre from '../../components/others/WhoWeAre'
 
 const AboutUs = () => {
@@ -67,9 +66,7 @@ const AboutUs = () => {
       </h2>
       <div className="grid lg:grid-cols-4 gap-x-3 gap-y-5">
         {who_us?.map((student) => (
-          <Bounce key={student.id}>
-            <WhoWeAre about={student} />
-          </Bounce>
+          <WhoWeAre about={student} key={student.id} />
         ))}
       </div>
     </div>
